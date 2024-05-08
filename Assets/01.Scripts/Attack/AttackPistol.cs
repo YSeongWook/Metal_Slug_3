@@ -34,7 +34,7 @@ public class AttackPistol : MonoBehaviour, IAttack
             IProjectile bullet = bulletGameObject.GetComponentInChildren<IProjectile>();
             bullet.Launch(victimTag);
             audioManager.PlaySound(0);
-            EventManager.TriggerEvent(GlobalEvents.GunUsed, 0);
+            EventManager<GlobalEvents>.TriggerEvent(GlobalEvents.GunUsed, 0);
         } 
     }
 

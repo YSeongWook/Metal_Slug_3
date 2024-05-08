@@ -169,7 +169,7 @@ public class BossController : MonoBehaviour
 
     private IEnumerator Spawn()
     {
-        EventManager.TriggerEvent(GlobalEvents.BossSpawn);
+        EventManager<GlobalEvents>.TriggerEvent(GlobalEvents.BossSpawn);
 
         foreach (Transform child in waterWave.transform)
         {

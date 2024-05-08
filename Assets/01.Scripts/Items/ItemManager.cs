@@ -68,7 +68,7 @@ public class ItemManager : MonoBehaviour, ICheckCollision
     {
         if (item.attackID > 0)
         {
-            EventManager.TriggerEvent(GlobalEvents.ItemPickedUp);
+            EventManager<GlobalEvents>.TriggerEvent(GlobalEvents.ItemPickedUp);
             attackManager.SetAttack(item.attackID, item.animController);
             attackManager.UpdateBulletCount(item.bulletCount);
         }

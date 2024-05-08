@@ -1,7 +1,5 @@
 using UnityEngine;
 using UnityEngine.UI;
-using DG.Tweening;
-using DG.Tweening.Core.Easing;
 using EventLibrary;
 using EnumTypes;
 
@@ -47,17 +45,18 @@ public class HUDManager : Singleton<HUDManager>
 
     void Awake()
     {
-        EventManager.StartListening(GlobalEvents.GunUsed, SetBulletCount);
-        EventManager.StartListening(GlobalEvents.PlayerDead, SetBulletCountToInfinity);
-        EventManager.StartListening(GlobalEvents.GrenadeUsed, SetGrenadeCount);
+        EventManager<GlobalEvents>.StartListening(GlobalEvents.GunUsed, SetBulletCount);
+        EventManager<GlobalEvents>.StartListening(GlobalEvents.PlayerDead, SetBulletCountToInfinity);
+        EventManager<GlobalEvents>.StartListening(GlobalEvents.GrenadeUsed, SetGrenadeCount);
 
-        EventManager.StartListening(GlobalEvents.MissionStart, OnMissionStart);
-        EventManager.StartListening(GlobalEvents.MissionSuccess, OnMissionSuccess);
-        EventManager.StartListening(GlobalEvents.PointsEarned, OnPlayerPointsChanged);
-        EventManager.StartListening(GlobalEvents.PlayerDead, OnPlayerDeath);
-        EventManager.StartListening(GlobalEvents.GameOver, CheckGameOver);
-        EventManager.StartListening(GlobalEvents.Restart, Restart);
-        EventManager.StartListening(GlobalEvents.Home, () => SetVisible(false));
+        EventManager<GlobalEvents>.StartListening(GlobalEvents.MissionStart, OnMissionStart);
+        EventManager<GlobalEvents>.StartListening(GlobalEvents.MissionSuccess, OnMissionSuccess);
+        EventManager<GlobalEvents>.StartListening(GlobalEvents.PointsEarned, OnPlayerPointsChanged);
+        EventManager<GlobalEvents>.StartListening(GlobalEvents.PlayerDead, OnPlayerDeath);
+
+        EventManager<GlobalEvents>.StartListening(GlobalEvents.GameOver, CheckGameOver);
+        EventManager<GlobalEvents>.StartListening(GlobalEvents.Restart, Restart);
+        EventManager<GlobalEvents>.StartListening(GlobalEvents.Home, () => SetVisible(false));
 
         bulletCountGradient = bulletCountGUI.GetComponent<Gradient>();
         timeUtils = GetComponent<TimeUtils>();
@@ -76,7 +75,7 @@ public class HUDManager : Singleton<HUDManager>
     void OnDisable()
     {
         // 게임 오버 상태 변경 이벤트 리스너 제거
-        EventManager.StopListening(GlobalEvents.GameOver, CheckGameOver);
+        EventManager<GlobalEvents>.StopListening(GlobalEvents.GameOver, CheckGameOver);
     }
 
     private void Update()
@@ -229,7 +228,7 @@ public class HUDManager : Singleton<HUDManager>
             SoundManager.Instance.PlayContinueSiren();
 
             // 게임 오버 상태에서는 이 메서드가 호출되지 않도록 이벤트 리스너를 제거
-            EventManager.StopListening(GlobalEvents.GameOver, CheckGameOver);
+            EventManager<GlobalEvents>.StopListening(GlobalEvents.GameOver, CheckGameOver);
         }
     }
 
@@ -243,7 +242,7 @@ public class HUDManager : Singleton<HUDManager>
         SoundManager.Instance.ClearEffectSource();
 
         // 재시작시 게임 오버 이벤트 등록
-        EventManager.StartListening(GlobalEvents.GameOver, CheckGameOver);
+        EventManager<GlobalEvents>.StartListening(GlobalEvents.GameOver, CheckGameOver);
     }
 
     public void AddCredit()

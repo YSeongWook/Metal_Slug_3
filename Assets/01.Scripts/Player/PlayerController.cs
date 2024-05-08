@@ -333,7 +333,7 @@ public class PlayerController : Singleton<PlayerController>
     // 플레이어가 비활성 상태임을 나타내는 이벤트를 발생
     void SendPlayerInactiveEvent()
     {
-        EventManager.TriggerEvent(GlobalEvents.PlayerInactive);
+        EventManager<GlobalEvents>.TriggerEvent(GlobalEvents.PlayerInactive);
     }
 
     // 아래 방향으로 ray를 쏘고, 캐릭터의 발 아래에 있는 레이어를 반환하는 메서드

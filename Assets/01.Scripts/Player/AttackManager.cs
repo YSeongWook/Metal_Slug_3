@@ -72,7 +72,7 @@ public class AttackManager : MonoBehaviour
         if (grenadeCount > 0)
         {
             grenadeCount--;
-            EventManager.TriggerEvent(GlobalEvents.GrenadeUsed, grenadeCount);
+            EventManager<GlobalEvents>.TriggerEvent(GlobalEvents.GrenadeUsed, grenadeCount);
 
             Vector3 grenadeInitialPos;
             if (playerController.body == BodyPosture.Crouch)
@@ -90,7 +90,7 @@ public class AttackManager : MonoBehaviour
     public void RestoreGrenade()
     {
         grenadeCount = 10;
-        EventManager.TriggerEvent(GlobalEvents.GrenadeUsed, grenadeCount);
+        EventManager<GlobalEvents>.TriggerEvent(GlobalEvents.GrenadeUsed, grenadeCount);
     }
 
     public void UpdateBulletCount(int newBulletCount = 0)
@@ -107,7 +107,7 @@ public class AttackManager : MonoBehaviour
         {
             SetDefaultAttack();
         }
-        EventManager.TriggerEvent(GlobalEvents.GunUsed, bulletCount);
+        EventManager<GlobalEvents>.TriggerEvent(GlobalEvents.GunUsed, bulletCount);
     }
 
     public void SetAttack(int attackID, RuntimeAnimatorController attackAnimController)
@@ -120,7 +120,7 @@ public class AttackManager : MonoBehaviour
     {
         currentFireArmAttack = FireArmAttacks[1];
         topBodyAnimator.runtimeAnimatorController = gunAnimController;
-        EventManager.TriggerEvent(GlobalEvents.GunUsed, bulletCount);
+        EventManager<GlobalEvents>.TriggerEvent(GlobalEvents.GunUsed, bulletCount);
     }
 
     private bool InRangeForKnife()

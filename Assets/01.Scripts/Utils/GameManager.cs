@@ -90,7 +90,7 @@ public class GameManager : Singleton<GameManager>
     public void SetGameOver()
     {
         isGameOver = true;
-        EventManager.TriggerEvent(GlobalEvents.GameOver);
+        EventManager<GlobalEvents>.TriggerEvent(GlobalEvents.GameOver);
     }
 
     public void SetGameOverRespawn()
@@ -107,7 +107,7 @@ public class GameManager : Singleton<GameManager>
     public void SetBossSpawn()
     {
         isBossSpawn = true;
-        EventManager.TriggerEvent(GlobalEvents.BossSpawn);
+        EventManager<GlobalEvents>.TriggerEvent(GlobalEvents.BossSpawn);
     }
 
     public bool IsBossSpawn()

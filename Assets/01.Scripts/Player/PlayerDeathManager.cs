@@ -59,7 +59,7 @@ public class PlayerDeathManager : MonoBehaviour, IDamaged
         }
         else if (projectileProp.type == ProjectileType.Knife)
         {
-            EventManager.TriggerEvent(GlobalEvents.PlayerStabbed);
+            EventManager<GlobalEvents>.TriggerEvent(GlobalEvents.PlayerStabbed);
         }
 
         if (projectileProp.type == ProjectileType.Water) Invoke("PlayAudioDeathInWater", 0.6f);
@@ -85,7 +85,7 @@ public class PlayerDeathManager : MonoBehaviour, IDamaged
     private void NotifyDeath()
     {
         setPlayerVisible(false);
-        EventManager.TriggerEvent(GlobalEvents.PlayerDead);
+        EventManager<GlobalEvents>.TriggerEvent(GlobalEvents.PlayerDead);
     }
 
     public void SpawnPlayer()
@@ -122,7 +122,7 @@ public class PlayerDeathManager : MonoBehaviour, IDamaged
         HUDManager.Instance.ResetTime();
         HUDManager.Instance.SetLifeCount(healthManager.lifeCount);
 
-        EventManager.TriggerEvent(GlobalEvents.Restart);
+        EventManager<GlobalEvents>.TriggerEvent(GlobalEvents.Restart);
     }
 
     private void setPlayerVisible(bool visible)

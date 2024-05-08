@@ -22,7 +22,7 @@ public class WarpTubeOut : MonoBehaviour
         marcoWarp = transform.GetChild(0).gameObject.GetComponent<Animator>();
         warpTubeCover = transform.GetChild(1).gameObject;
 
-        EventManager.StartListening(GlobalEvents.BossSpawn, DisableGameObject);
+        EventManager<GlobalEvents>.StartListening(GlobalEvents.BossSpawn, DisableGameObject);
     }
 
     private void OnTriggerEnter2D(Collider2D col)

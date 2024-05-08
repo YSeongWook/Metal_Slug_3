@@ -74,7 +74,7 @@ public class HippieFreedom : MonoBehaviour, IDamaged, IObserver, ICheckCollision
     {
         animManager.PlayFreeAnim(EndOfHippieFreedAnim);
         gameObject.layer = (int)Layers.FreeMan;
-        EventManager.TriggerEvent(GlobalEvents.PointsEarned, 100);
+        EventManager<GlobalEvents>.TriggerEvent(GlobalEvents.PointsEarned, 100);
     }
 
     private void EndOfHippieFreedAnim()
